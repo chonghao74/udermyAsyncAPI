@@ -1,0 +1,52 @@
+@charset "utf-8";
+@import "./utility.scss" ;
+
+
+html{
+    background-color: azure;
+}
+
+header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    label{
+        font-size: 50px;
+        color: red;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+}
+
+nav{
+    div{
+        display: flex;
+        justify-content: center;
+        a{
+            text-decoration: none;
+            margin-right: 20px;
+            font-size: large;
+            &:hover{
+                color: peru;
+            }
+        }
+    }
+}
+
+.div-block{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    background-color: aqua;
+    .div-interface{
+        display: flex;
+        flex-direction: column;
+        background-color:blue;
+        color: aliceblue;
+        font-size: 18px;
+        width: 200px;
+        height: 300px;
+        padding: 10px;
+    }
+}
+

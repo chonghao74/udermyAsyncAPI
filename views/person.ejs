@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="robots" content="" />
+    <link rel="icon" sizes="192x192" href="" />
+    <link rel="stylesheet" href="/style/person.css" />
+    <base target="_blank" />
+    <title>Title</title>
+  </head>
+  <body>
+    <header>
+      <label for="">My Number is <%= numberData.number %></label>
+    </header>
+    <nav>
+      <div>
+        <a href="https://www.google.com"><%= numberData.name %></a>
+        <a href="https://www.google.com"><%= numberData.number %></a>
+        <a href="https://www.google.com"><%= numberData.age %></a>
+        <a href="https://www.google.com" target="_self"
+          ><%= numberData.classname %></a
+        >
+      </div>
+    </nav>
+    <main>
+      <div class="div-block">
+        <% datas.forEach(element => { %>
+        <!--
+        <div class="div-interface">
+          <label for=""><%= element.name %></label>
+          <label for=""><%= element.number %></label>
+          <label for=""><%= element.age %></label>
+          <label for=""><%= element.classname %></label>
+        </div>
+        -->
+        <%- include("partials/interface", {element}) %> <%});%>
+      </div>
+    </main>
+  </body>
+  <noscript>
+    <label for="">此瀏覽器不支援JS</label>
+  </noscript>
+</html>

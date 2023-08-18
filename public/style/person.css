@@ -1,0 +1,55 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html {
+  background-color: azure;
+}
+
+header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+header label {
+  font-size: 50px;
+  color: red;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+nav div {
+  display: flex;
+  justify-content: center;
+}
+nav div a {
+  text-decoration: none;
+  margin-right: 20px;
+  font-size: large;
+}
+nav div a:hover {
+  color: peru;
+}
+
+.div-block {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  background-color: aqua;
+}
+.div-block .div-interface {
+  display: flex;
+  flex-direction: column;
+  background-color: blue;
+  color: aliceblue;
+  font-size: 18px;
+  width: 200px;
+  height: 300px;
+  padding: 10px;
+}/*# sourceMappingURL=person.css.map */
