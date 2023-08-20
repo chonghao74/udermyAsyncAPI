@@ -4,12 +4,19 @@
   box-sizing: border-box;
 }
 
+label{
+  font-size: 20px;
+  color: aliceblue;
+}
+
 html {
   scroll-behavior: smooth;
 }
 
-html {
-  background-color: azure;
+body {
+  background-image: url("/images/Chips_FrenchFries.jpg");
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 header {
@@ -41,7 +48,6 @@ nav div a:hover {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  background-color: aqua;
 }
 .div-block .div-interface {
   display: flex;
@@ -52,4 +58,5 @@ nav div a:hover {
   width: 200px;
   height: 300px;
   padding: 10px;
+  margin: 10px;
 }/*# sourceMappingURL=person.css.map */

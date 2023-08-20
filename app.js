@@ -61,7 +61,7 @@ app.get("/person", async (req, res) => {
             console.log(e);
         });
 
-    await Person.find({})
+    await Person.find({ number: req.query.number })
         .then(d => {
             // console.log(d);
             datas = d;

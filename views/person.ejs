@@ -7,16 +7,22 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <meta name="robots" content="" />
-    <link rel="icon" sizes="192x192" href="" />
+    <link rel="icon" sizes="192x192" href="/icons/api.png" />
     <link rel="stylesheet" href="/style/person.css" />
     <base target="_blank" />
     <title>Title</title>
   </head>
   <body>
     <header>
+      <% if(numberData != null){%>
       <label for="">My Number is <%= numberData.number %></label>
+      <% } else {%>
+      <label for="">My Number is Not Find</label>
+      <% } %>
     </header>
+    <%# EJS Comment %>
     <nav>
+      <% if(numberData != null){%>
       <div>
         <a href="https://www.google.com"><%= numberData.name %></a>
         <a href="https://www.google.com"><%= numberData.number %></a>
@@ -25,22 +31,18 @@
           ><%= numberData.classname %></a
         >
       </div>
+      <% } %>
     </nav>
     <main>
+      <label for="">ddddd</label>
       <div class="div-block">
-        <% datas.forEach(element => { %>
-        <!--
-        <div class="div-interface">
-          <label for=""><%= element.name %></label>
-          <label for=""><%= element.number %></label>
-          <label for=""><%= element.age %></label>
-          <label for=""><%= element.classname %></label>
-        </div>
-        -->
-        <%- include("partials/interface", {element}) %> <%});%>
+        <% if(datas != null){ %> <% for(let i =0 ; i<20 ; i++){ %> <%
+        datas.forEach(element => { %> <%-
+        include("partials/interface",{element}) %> <%});%> <% } %> <% } %>
       </div>
     </main>
   </body>
+  <script src="/js/person.js"></script>
   <noscript>
     <label for="">此瀏覽器不支援JS</label>
   </noscript>
