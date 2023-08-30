@@ -10,7 +10,7 @@ const app = express();//執行express 函示
 
 //middleware
 app.use(bodyparser.urlencoded({ extended: true }));//post urlencoded
-app.use(express.static("public"));//css position
+app.use(express.static("public"));//css, js and other folder position
 app.set("view engine", "ejs");//
 
 //create a Schema
@@ -136,8 +136,18 @@ app.get("/axiosgetapi/:city", async (req, res) => {
 
 
 app.get("/*", (req, res) => {
+    let urlObj = url.parse(req.url, true);  //拆解url
+    switch (urlObj.pathname) {
+        case '/axiosgetapi':
+            console.log(urlObj.pathname);
+            // res.redirect('/axiosgetapi/London');
+            res.redirect('/index.html');
+            break;
+        default:
+            res.render("error");
+            break
+    }
 
-    res.render("error");
 });
 
 

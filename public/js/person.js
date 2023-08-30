@@ -29,26 +29,6 @@ async function getFetch(city) {
 
     await fetch(dataUrl, { method: 'GET' }).then(res => {
 
-        return res.text;
-    })
-        .then(data => {
-            let parser = new DOMParser();
-            let fff = parser.parseFromString(data, "application/xml");
-            console.log(fff);
-        })
-        .catch(e => {
-            console.log("Error " + e);
-            return e;
-        });
-}
-
-async function getFetch(city) {
-    const dataUrl = `https://api.weatherapi.com/v1/current.json?key=2e7758f384d64736b06154338232208&q=${city}&aqi=yes`;
-
-    console.log(dataUrl);
-
-    await fetch(dataUrl, { method: 'GET' }).then(res => {
-
         return res.json();
     })
         .then(data => {
@@ -82,7 +62,47 @@ async function getAxios(city) {
     window.console.log(resData.config);
 }
 
+const apps = {
+    Android: 'https://play.google.com/',
+    iOS: 'https://www.apple.com/store',
+};
+
+const platform = () => {
+    let userAgent = navigator.userAgent || window.opera;
+    if (/windows phone/i.test(userAgent)) return 'Windows Phone';
+    if (/android/i.test(userAgent)) return 'Android';
+    if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) return 'iOS';
+    return null;
+};
+
+function redirectAppStore(platform) {
+    switch (platform.toLowerCase()) {
+        case 'android':
+            window.console.log(apps.Android);
+            location.replace(apps.Android);
+            break;
+        case 'ios':
+            window.console.log(apps.iOS);
+            location.replace(apps.iOS);
+            break;
+        default:
+            window.console.log("NO");
+            location.replace(apps.Android);
+            break;
+
+    }
+
+
+    location.replace(apps[os]);
+}
+
 // getFetch('London');
 // getAxios('London');
 addLabelevent();
+redirectAppStore("ANdroid");
+
+
+
+
+
 
