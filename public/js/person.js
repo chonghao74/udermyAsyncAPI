@@ -1,3 +1,6 @@
+//import utility from "utility";
+// utility.app1();
+
 
 console.log("get personjs");
 const divSelector = document.querySelector('div.div-block');
@@ -99,7 +102,7 @@ function redirectAppStore(platform) {
 // getFetch('London');
 // getAxios('London');
 addLabelevent();
-redirectAppStore("ANdroid");
+// redirectAppStore("ANdroid");
 
 
 
