@@ -149,86 +149,96 @@ app.get("/axiosgetapi/:city", async (req, res) => {
 //RestFul API
 //Get
 app.get("/api/students", async (req, res) => {
+    let dbData;
+
     try {
-        let dbData = await Person.find({})
+        dbData = await Person.find({}).exec()
             .then(d => {
-                return d;
+                return {
+                    status: 200,
+                    data: d
+                };
             })
             .catch(e => {
-                return e;
+                return {
+                    status: 401,
+                    data: e
+                };
             });
-
-
-        let successData = {
-            status: 200,
-            data: dbData
-        };
-        res.send(successData);
     }
     catch (e) {
-        let errorData = {
-            status: 400,
+        dbData = {
+            status: 6999,
             data: e
         };
-        res.send(errorData);
     }
+
+    res.send(dbData);
+
 })
 
 app.get("/api/students/name/:nameData", async (req, res) => {
+    let { nameData } = req.params;
+    let dbData;
+
     try {
-        let { nameData } = req.params;
-        let dbData = await Person.find({ name: nameData })
+
+        dbData = await Person.find({ name: nameData }).exec()
             .then(d => {
-                return d;
+                return {
+                    status: 200,
+                    data: d
+                };
             })
             .catch(e => {
-                return e;
+                return {
+                    status: 401,
+                    data: e
+                };
             });
-
-        let successData = {
-            status: 200,
-            data: dbData
-        };
-        res.send(successData);
     }
     catch (e) {
-        let errorData = {
-            status: 400,
+        dbData = {
+            status: 6999,
             data: e
         };
-        res.send(errorData);
     }
+
+    res.send(dbData);
 });
 
-app.get("/api/students/name", async (req, rers) => {
+app.get("/api/students/name", async (req, res) => {
     let { name } = req.body;
+    let dbData;
+
     try {
-        let dbData = await Person.find({ name: name })
+        dbData = await Person.find({ name: name }).exec()
             .then(d => {
-                return d;
+                return {
+                    status: 200,
+                    data: d
+                };
             })
             .catch(e => {
-                return e;
+                return {
+                    status: 401,
+                    data: e
+                };
             });
 
-        let successData = {
-            status: 200,
-            data: dbData
-        };
-        res.send(successData);
     }
     catch (e) {
-        let errorData = {
-            status: 400,
+        dbData = {
+            status: 6999,
             data: e
         };
-        res.send(errorData);
     }
+
+    res.send(dbData);
 });
 
 //Post
-app.post("/api/students", express.json(), async (req, res, next) => {
-
+app.post("/api/students", express.json(), async (req, res) => {
     let { name, number, age, classname } = req.body;
     const insertData = { name: name, number: number, age: age, classname: classname };
     console.log("POST endPoint /api/students ");
@@ -280,41 +290,61 @@ app.delete("/api/students/name/", async (req, res) => {
 });
 
 function deleteAllDataByName(res, name) {
-    Person.deleteMany({ name: name })
-        .then(d => {
-            dbData = {
-                status: 200,
-                data: d
-            };
-            res.send(dbData);
-        })
-        .catch * (e => {
-            dbData = {
-                status: 501,
-                data: e
-            };
-            res.send(dbData);
-        });
+    try {
+        Person.deleteMany({ name: name }).exec()
+            .then(d => {
+                dbData = {
+                    status: 200,
+                    data: d
+                };
+                res.send(dbData);
+            })
+            .catch * (e => {
+                dbData = {
+                    status: 401,
+                    data: e
+                };
+                res.send(dbData);
+            });
+    }
+    catch (e) {
+        dbData = {
+            status: 6999,
+            data: e
+        };
+        res.send(dbData);
+    }
+
 }
 
 function deleteOneDataByName(res, name) {
-    Person.deleteOne({ name: name })
-        .then(d => {
-            dbData = {
-                status: 200,
-                data: d
-            };
-            res.send(dbData);
-        })
-        .catch * (e => {
-            dbData = {
-                status: 501,
-                data: e
-            };
-            res.send(dbData);
-        });
+    try {
+        Person.deleteOne({ name: name })
+            .then(d => {
+                dbData = {
+                    status: 200,
+                    data: d
+                };
+                res.send(dbData);
+            })
+            .catch * (e => {
+                dbData = {
+                    status: 401,
+                    data: e
+                };
+                res.send(dbData);
+            });
+    }
+    catch (e) {
+        dbData = {
+            status: 6999,
+            data: e
+        };
+        res.send(dbData);
+    }
 }
 
+//Put
 app.put("/api/students", async (req, res) => {
     let { name, number, age, classname } = req.body;
     let dbData;
@@ -359,11 +389,12 @@ app.put("/api/students", async (req, res) => {
 
     //if used findOneAndUpdate, it can use option for validator, overwrite
     console.log("(findOneAndUpdate )Put endPoint /api/students");
+
     try {
         dbData = await Person.findOneAndUpdate(
             filter,
             update,
-            { new: true, runValidators: true, overwrite: true })
+            { new: true, runValidators: true, overwrite: true }).exec()
             .then(d => {
                 console.log(d);
                 return {
@@ -374,7 +405,7 @@ app.put("/api/students", async (req, res) => {
             .catch(e => {
                 console.log(e);
                 return {
-                    status: 501,
+                    status: 401,
                     data: e
                 };
             })
@@ -382,14 +413,15 @@ app.put("/api/students", async (req, res) => {
     catch (e) {
         console.log("(findOneAndUpdate)Put endPoint /api/students :property Error");
         dbData = {
-            status: 401,
-            data: "Property Error"
+            status: 6999,
+            data: e
         };
     }
+
     res.send(dbData);
 });
 
-
+//Patch
 app.patch("/api/students", async (req, res) => {
     let { name, number, age, classname } = req.body;
     let dbData;
