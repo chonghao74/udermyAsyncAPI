@@ -35,12 +35,19 @@
       <% } %>
     </nav>
     <main>
-      <label for="">ddddd</label>
-      <div class="div-block">
-        <% if(datas != null){ %> <% for(let i =0 ; i<20 ; i++){ %> <%
-        datas.forEach(element => { %> <%-
-        include("partials/interface",{element}) %> <%});%> <% } %> <% } %>
-      </div>
+      <section>
+        <label for="">ddddd</label>
+        <div class="div-block">
+          <% if(datas != null){ %> <% for(let i =0 ; i<20 ; i++){ %> <%
+          datas.forEach(element => { %> <%-
+          include("partials/interface",{element}) %> <%});%> <% } %> <% } %>
+        </div>
+      </section>
+      <section>
+        <iframe src="http://127.0.0.1:5500/index.html" width="50%">
+          你的瀏覽器不支援 iframe
+        </iframe>
+      </section>
     </main>
   </body>
   <script src="/js/person.js"></script>

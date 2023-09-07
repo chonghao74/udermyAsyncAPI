@@ -422,9 +422,53 @@ app.put("/api/students", async (req, res) => {
 });
 
 //Patch
-app.patch("/api/students", async (req, res) => {
-    let { name, number, age, classname } = req.body;
+app.patch("/api/students/:_id", async (req, res) => {
     let dbData;
+    console.log(req.params._id.trim());
+
+    if (!req.params._id.trim()) {
+        dbData = {
+            status: 6999,
+            data: "_id is empty String "
+        };
+    }
+    else {
+        console.log("false");
+        let filter = req.params;
+        let update = req.body;
+
+
+        console.log("(findOneAndUpdate )Patch endPoint /api/students");
+        try {
+            dbData = await Person.findOneAndUpdate(
+                filter,
+                update,
+                { new: true, runValidators: true }).exec()
+                .then(d => {
+                    //console.log(d);
+                    return {
+                        status: 200,
+                        data: d
+                    };
+                })
+                .catch(e => {
+                    //console.log(e);
+                    return {
+                        status: 401,
+                        data: e
+                    };
+                })
+        }
+        catch (e) {
+            console.log("(findOneAndUpdate)Patch endPoint /api/students :property Error");
+            dbData = {
+                status: 6999,
+                data: e
+            };
+        }
+    }
+
+    res.send(dbData);
 });
 
 
