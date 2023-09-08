@@ -9,6 +9,9 @@ const { default: axios, Axios } = require("axios");
 const app = express();//執行express 函示-一般做法
 //const router = express.Router();//執行expres Router 建議做法
 
+//cors
+const cors = require('cors');
+
 //DB
 const mongoose = require('mongoose');
 // const { Schema } = mongoose;//destroction mongose 中有Schema 參數的物件
@@ -148,7 +151,7 @@ app.get("/axiosgetapi/:city", async (req, res) => {
 
 //RestFul API
 //Get
-app.get("/api/students", async (req, res) => {
+app.get("/api/students", cors(), async (req, res) => {
     let dbData;
 
     try {
