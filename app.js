@@ -18,11 +18,29 @@ const mongoose = require('mongoose');
 const { personSchema } = require("./model/person");
 
 //middleware
+//1.設定 content-type
 // app.use(bodyparser.urlencoded({ extended: true }));//post urlencoded -> type:application/x-www-form-urlencoded
 // app.use(express.urlencoded({ extended: true }));//post urlencoded -> type:application/x-www-form-urlencoded
 //  app.use(bodyparser.json());//post json -> type:application/json
 app.use(express.json());//post json -> type:application/json
 app.use(express.static("public"));//css, js and other folder position
+//2.設定 進入任何 routes 前置作業
+app.use((req, res, next) => {
+    console.log("I am middleware!!!");
+
+    // 可以寫判斷式來預處理
+    // 如果都符合才執行 next 執行所要的 routes
+    if (true) {
+        next();
+    }
+    else {
+        res.redirect("https://google.com");
+    }
+
+
+
+
+});
 app.set("view engine", "ejs");//
 
 //create a Schema
