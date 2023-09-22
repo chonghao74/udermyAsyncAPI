@@ -26,7 +26,7 @@ app.use(express.json());//post json -> type:application/json
 app.use(express.static("public"));//css, js and other folder position
 //2.設定 進入任何 routes 前置作業
 app.use((req, res, next) => {
-    console.log("I am middleware!!!");
+    console.log("I am middleware all!!!");
 
     // 可以寫判斷式來預處理
     // 如果都符合才執行 next 執行所要的 routes
@@ -36,11 +36,8 @@ app.use((req, res, next) => {
     else {
         res.redirect("https://google.com");
     }
-
-
-
-
 });
+
 app.set("view engine", "ejs");//
 
 //create a Schema
@@ -492,9 +489,8 @@ app.patch("/api/students/:_id", async (req, res) => {
     res.send(dbData);
 });
 
-
 app.get("/*", (req, res) => {
-    res.render("error");
+    return res.render("error");
 });
 
 
