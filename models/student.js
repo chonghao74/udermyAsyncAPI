@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-const { Schema } = mongoose;//destroction mongose 中有Schema 參數的物件
+const { Schema } = mongoose;//destroction mongose 中有 Schema 參數的物件
 
-const personSchema = new Schema({
+const studentSchema = new Schema({
     name: {
         type: String,
         maxlength: [100, "Too Long"],
@@ -28,4 +28,4 @@ const personSchema = new Schema({
 });
 
 
-module.exports.personSchema = personSchema;
+module.exports.studentSchema = studentSchema;
