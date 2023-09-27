@@ -7,12 +7,13 @@ const app = express();//執行express 函示-一般做法
 //import routes
 const studentRoutes = require("./routes/student-routes");
 const weatherRoutes = require("./routes/weather-routes");
+const loginRoutes = require("./routes/login-routes");
 
 //cors
 const cors = require('cors');
 
 //DB
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
 // const { Schema } = mongoose;//destroction mongose 中有Schema 參數的物件
 const { personSchema } = require("./models/student");
 
@@ -37,6 +38,7 @@ app.use((req, res, next) => {
 //3.設定 Routes
 app.use('/api/students', studentRoutes);
 app.use('/api/weather', weatherRoutes);
+app.use('/api/login', loginRoutes);
 
 //設定 view engine 使用 ejs ，則 render 時就能不寫副檔名
 app.set("view engine", "ejs");

@@ -24,10 +24,10 @@ router.use((req, res, next) => {
 //connect
 mongoose.connect('mongodb://127.0.0.1:27017/school')
     .then(() => {
-        console.log("db connect...")
+        console.log("db (students) connect...")
     })
     .catch(e => {
-        console.log(`db connect fail ${e}`);
+        console.log(`db (students) connect fail ${e}`);
     });
 
 //create a Model for Student
@@ -63,7 +63,7 @@ router.get("/", cors(), async (req, res) => {
     res.send(dbData);
 })
 
-router.get("name/:nameData", async (req, res) => {
+router.get("/name/:nameData", async (req, res) => {
     let { nameData } = req.params;
     let dbData;
 
