@@ -10,7 +10,7 @@ const accountSchema = new Schema({
     },
     password: {
         type: String,
-        maxlength: 9,
+        maxlength: 1000,
         minlength: 30,
         required: [true, 'Why no password?']
     }
