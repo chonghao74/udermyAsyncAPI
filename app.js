@@ -1,6 +1,11 @@
 const fs = require("fs");
 const url = require("url");
 const express = require("express");
+const swaggerUi = require("swagger-ui-express");
+const swaggerDocument = require("./swagger.json");
+// const path = require("path");
+require("dotenv").config({ path: `${__dirname}/env/.env.local` });
+const port = process.env.PORT;
 
 const app = express(); //執行express 函示-一般做法
 
@@ -40,14 +45,36 @@ app.use("/api/weather", weatherRoutes);
 app.use("/api/accounts", accountRoutes);
 //4.是否設定所有 router 都能跨網域執行
 //app.use(cors());
+//5.設定 swagger
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 //設定 view engine 使用 ejs ，則 render 時就能不寫副檔名
 app.set("view engine", "ejs");
 
 app.get("/*", (req, res) => {
+  // for (var i = 0; i < 5; i++) {
+  //   setTimeout(() => {
+  //     console.log(i);
+  //   }, 1000);
+  // }
+
+  // for (let j = 0; j < 5; j++) {
+  //   setTimeout(() => {
+  //     console.log(j);
+  //   }, 1000);
+  // }
+
+  for (var k = 0; k < 5; k++) {
+    (function (data) {
+      setTimeout(() => {
+        console.log(data);
+      }, 1000);
+    })(k);
+  }
+
   return res.render("error");
 });
 
-app.listen(3001, () => {
-  console.log("port 3001 is Running!!!");
+app.listen(port, () => {
+  console.log(`port ${port} is Running!!!`);
 });
